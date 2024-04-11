@@ -3,13 +3,13 @@
 
 | Syntax | Description |
 | --- | ----------- |
-| id [-u ,-g]| See all info | 
+| id [-u ,-g]| See all info |
 | w , who | los usuario activos al momento  |
 | lastlog| la ultima vez cuando los usuarios han conectado |
 | lastb | usuarios q han fallado a loguearse  |
 | getent passwd heidi | Ver informaciones del usuario heidi por el fichero /etc/passwd  |
 
-- Si quitamos el "x" del segundo campo de algun usuario , eso nos deja a entrar a usuarios sin pedir contrasena 
+- Si quitamos el "x" del segundo campo de algun usuario , eso nos deja a entrar a usuarios sin pedir contrasena
 
 ***
 
@@ -39,7 +39,7 @@
 | Syntax | Description |
 | --- | ----------- |
 | adduser| es una forma rápida, fácil e interactiva de crear usuarios |
-| useradd| es otra manera de crear usuarios y no es la mejor manera ( no crea el directorio /home/usuario) | 
+| useradd| es otra manera de crear usuarios y no es la mejor manera ( no crea el directorio /home/usuario) |
 
 ***
 
@@ -64,7 +64,7 @@
 | --- | ----------- |
 | /etc/skell  |   |
 
-- Es para poner archivos a cualquier usuario de manera automatica 
+- Es para poner archivos a cualquier usuario de manera automatica
 
 
 
@@ -114,12 +114,37 @@
 | newgrp |  |
 | chwon heidi:1asir diskM.sh | cambiar el dueno grupo del fichero diskM.sh desde heidi a 1asir   |
 
-
+***
 # PASSWD -S heidi
-- Para ver si el usuario esta bloqueado o no , si Sale P pues esta libre si esta L pues bloqueado 
-
+- Para ver si el usuario esta bloqueado o no , si Sale P pues esta libre si esta L pues bloqueado
+***
+# SUDOERS
  
+- Fichero de configuracion : **/etc/sudoers**
+- - Para editar el fichero /etc/sudoers se edita con **visudo -f**
+- - Y para COmprobar si todo esta bien se hace con **visudo -c**
 
+| Syntax | Description |
+| --- | ----------- |
+| getent group sudo | para ver cual son los usuarios q tienen privelegio root | 
+
+
+- para dar el privelegio de root a un usuario se hace asi :
+> visudo -f /etc/sudoers
+> heidi ALL=(ALL:ALL) ALL
+- Para dar el privelegio de algunos comando especificos a algun suuario se hace asi :
+> visudo -f /etc/sudoers
+> Cmnd_Alias CTL=/bin/systemctl , /bin/ip
+> %heidi ALL=CTL (HEIDI EL NOMBRE DE GRUPO)
+- Para poder a mofiicar el fichero /etc/netwrok/interfaces o /etc/netplan/00-... (Ubuntu) se ahce como antes pero con una modificacion
+> Cmnd_Alias CTL= /bin/systemctl , /bin/nano /etc/netplan/00-yaml
+> %heidi ALL=CTL 
+- Para q no se pide la contrasena se hace falta copiar el anterior y anadir una cosa :
+> %heidi ALL=NOPASSWD:CTL 
+- Para limitizar el accesso con contrasena osea q para pedir al contrasena 2 vezes y si no se inserta corecta se echa el usuario a repitir de ahcerla otra vez se hace con la siguiente linea :
+> Defaults:ALL passwd_tries=2
+
+***
 
 # FOLDERS IMPORTANTES
 
@@ -140,5 +165,3 @@
 - chage
 - nwegrp
 - groupmod grupo
-
-
