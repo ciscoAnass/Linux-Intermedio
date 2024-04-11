@@ -145,6 +145,33 @@
 > Defaults:ALL passwd_tries=2
 
 ***
+# USERADD
+
+| Syntax | Description |
+| --- | ----------- |
+| useradd -m -s /bin/bash raton | crear un usuario se llama raton ( se  hace falta ejecutar comando 'passwd raton' para darlo un contrasena pa poder a loguear) |
+
+***
+# mkpasswd
+
+- Se hace falta instalar este paquete
+> sudo apt install whois
+
+
+| Syntax | Description |
+| --- | ----------- |
+| useradd -m -s /bin/bash -p $(mkpassd -m sha-512 gato) gato |  | Crear una cuenta con una contrasena encriptada
+
+
+# Crear Usuario de Forma MASSIVA
+
+<img src="/img/Crear-UsuarioDeFormaMassiva.png" alt="css3" />
+
+# Borrar Usuarios de forma MASSIVA
+
+<img src="/img/BorrarUsuariosDeFormaMassiva.png" alt="css3"/>
+
+***
 
 # FOLDERS IMPORTANTES
 
