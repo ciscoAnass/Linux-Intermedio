@@ -139,14 +139,23 @@
 - Para dar el privelegio de algunos comando especificos a algun suuario se hace asi :
 
 > visudo -f /etc/sudoers
+
 > Cmnd_Alias CTL=/bin/systemctl , /bin/ip
+
 > %heidi ALL=CTL (HEIDI EL NOMBRE DE GRUPO)
+
 - Para poder a mofiicar el fichero /etc/netwrok/interfaces o /etc/netplan/00-... (Ubuntu) se ahce como antes pero con una modificacion
+
 > Cmnd_Alias CTL= /bin/systemctl , /bin/nano /etc/netplan/00-yaml
+
 > %heidi ALL=CTL 
+
 - Para q no se pide la contrasena se hace falta copiar el anterior y anadir una cosa :
+
 > %heidi ALL=NOPASSWD:CTL 
+
 - Para limitizar el accesso con contrasena osea q para pedir al contrasena 2 vezes y si no se inserta corecta se echa el usuario a repitir de ahcerla otra vez se hace con la siguiente linea :
+
 > Defaults:ALL passwd_tries=2
 
 ***
