@@ -132,6 +132,8 @@
 - para dar el privelegio de root a un usuario se hace asi :
 > visudo -f /etc/sudoers
 > heidi ALL=(ALL:ALL) ALL
+
+
 - Para dar el privelegio de algunos comando especificos a algun suuario se hace asi :
 > visudo -f /etc/sudoers
 > Cmnd_Alias CTL=/bin/systemctl , /bin/ip
