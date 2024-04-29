@@ -18,7 +18,7 @@
 | Syntax | Description |
 | --- | ----------- |
 | heidi| See all info |
-| dasbioasdhoisdaoiasd |  |
+| dasbioasdhoisdaoiasd | contrasena encriptada |
 | 19758 | cuanto de dias por la ultima vez q se ha cambiado la contrasena desde 1975  |
 | 0 | cuanto dias han pasado para cambiar la contrasena |
 | 99999 | cuanto dias te esperan pa q no puedes hacer log mas con la contrasena actual |
