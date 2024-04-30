@@ -14,13 +14,21 @@
 - **Segundo :** nos vamos a crear un fichero se llama "algo.service" en esta carpeta "/etc/systemd/system"
 - **Tercero :** Ponemos esta Configuracion en el fichero que hemos creado
 >[Unit]
+
 >Description=Mi servicio de prueba
+
 >[Service]
+
 >Type=simple
+
 >ExecStart=/root/conexiones
+
 >ExecStop=/root/borraConexiones
+
 >RemainAfterExit=yes
+
 >[Install]
+
 >WantedBy=multi-user.target
 
 - **Cuarto :** hacemos este comando a los scripts :
