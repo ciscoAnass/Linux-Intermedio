@@ -1,40 +1,68 @@
-# MONITORIZACIÓN DE PROCESOS
-- **apt install htop**
+## MONITORIZACIÓN DE PROCESOS
 
-| Syntax         | Description                                              |
-| ---------------| ------------------------------------------------------- |
-| ps             | Nos muestra los procesos del sistema                   |
-| pstree -p     | Nos muestra los procesos de sistema de forma árbol     |
-| top            | Nos muestra los procesos de forma gráfica y con menú    |
-| htop           |                                                       |
+- **Instalación de htop:**
+  ```bash
+  apt install htop
+  ```
 
-# GESTIÓN DE PROCESOS A LARGO PLAZO
+***
+### Comandos para monitorear procesos en Linux
 
-| Syntax                    | Description                                               |
-| ------------------------- | ------------------------------------------------------- |
-| ping 8.8.8.8 + CTL+Z     | Ejecutamos el comando ping y después, con CTL+Z, el proceso se acaba pero se queda en segundo plano. Podemos volver a ejecutarlo. |
-| nano hola.txt &          | Cuando se añade el "&" se pone la ejecución del proceso en segundo plano. |
-| jobs                      | Para ver los procesos en lista de espera               |
-| bg [num]                 | Reinicia el trabajo a segundo plano                     |
-| fg                       | Similar a bg                                           |
+| Comando        | Descripción                                                |
+| ---------------| ---------------------------------------------------------- |
+| `ps`           | Muestra una lista de los procesos en ejecución en el sistema. |
+| `pstree -p`    | Muestra los procesos en forma de árbol, con sus PID asociados. |
+| `top`          | Muestra los procesos en tiempo real con un menú interactivo. |
+| `htop`         | Similar a `top`, pero con una interfaz más amigable y opciones avanzadas. |
 
-# MATAR PROCESOS
+***
+### Gestión de Procesos en Segundo Plano
 
-- Para matar un proceso del usuario heidi, primero entramos como heidi y hacemos:
-  > nano prueba.txt
+| Comando                    | Descripción                                                                            |
+| -------------------------- | -------------------------------------------------------------------------------------- |
+| `ping 8.8.8.8 &`           | Ejecuta el comando `ping` en segundo plano.                                             |
+| `nano hola.txt &`          | Ejecuta el editor `nano` en segundo plano al añadir `&` al final del comando.           |
+| `jobs`                     | Muestra una lista de los trabajos o procesos en segundo plano.                         |
+| `bg [num]`                 | Envía un trabajo en pausa (detenido) al segundo plano y lo reanuda.                     |
+| `fg [num]`                 | Trae un trabajo en segundo plano al primer plano para continuar su ejecución.           |
 
-- Luego entramos como su y ponemos este comando:
-  > ps u -u heidi | grep nano
+***
 
-- Así nos sale la tarea nano con su PID. A través del PID ejecutamos este comando:
-  > kill -9 29385 [número de PID]
+### Finalizar Procesos
 
-## MATAR VARIOS PROCESOS A LA VEZ
+- Para finalizar un proceso iniciado por el usuario `heidi`, primero iniciamos sesión como `heidi` y ejecutamos el siguiente comando para abrir un archivo en `nano`:
 
-- Para matar varios procesos al mismo tiempo, necesitamos saber qué proceso es. Por ejemplo, si hay muchas pestañas de Google abiertas y queremos cerrarlas todas, solo tenemos que hacer este comando:
-  > killall -9 chrome
+```bash
+  nano prueba.txt
+```
+- Luego, cambiamos al usuario `root` con `su` y ejecutamos este comando para obtener el PID del proceso `nano` de `heidi`:
 
-## MATAR USUARIO
+```bash
+  ps -u heidi | grep nano
+```
+- Esto mostrará el proceso de `nano` con su PID. Para finalizar el proceso usando ese PID, ejecutamos:
 
-- Para matar un usuario conectado, se hace falta el comando:
-  > pkill -9 -u heidi
+  kill -9 [número_de_PID]
+
+  Ejemplo:
+
+```bash
+  kill -9 29385
+```
+
+***
+
+### Matar Varios Procesos a la Vez
+
+- Para matar múltiples procesos de una aplicación, como Google Chrome, usamos:
+
+```bash
+killall -9 chrome
+```
+
+### Matar Usuario Conectado
+
+- Para desconectar a un usuario, usamos el siguiente comando:
+```bash
+ pkill -9 -u heidi
+```
