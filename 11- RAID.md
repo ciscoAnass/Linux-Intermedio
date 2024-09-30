@@ -1,48 +1,48 @@
-# BÁSICO
+# INTRODUCCIÓN A RAID
 
-- **Paquete a Instalar:**
+- **Instalación del Paquete Necesario:**
   
-> Para comenzar a trabajar con RAID, es necesario instalar el paquete **mdadm**. Este paquete proporciona herramientas para crear y gestionar dispositivos RAID en Linux.
+> Para comenzar a trabajar con RAID, es esencial instalar el paquete **mdadm**, que proporciona herramientas robustas para la creación y gestión de dispositivos RAID en sistemas Linux.
   
 > ```bash
 > sudo apt install mdadm
 > ```
 
-- **Fichero de Configuración:**
+- **Archivo de Configuración Importante:**
   
-> La configuración de **mdadm** se almacena en el archivo **/etc/mdadm/mdadm.conf**, donde se puede definir cómo se configuran los dispositivos RAID.
+> La configuración de **mdadm** se encuentra en el archivo **/etc/mdadm/mdadm.conf**. Aquí es donde se definen las configuraciones de los dispositivos RAID, lo cual es crucial para su correcto funcionamiento.
 
-- **Ver el estado de los RAID:**
+- **Consulta del Estado de los Dispositivos RAID:**
   
-> Para comprobar el estado actual de los dispositivos RAID en el sistema, se utiliza el siguiente comando:
+> Para verificar el estado actual de los dispositivos RAID en el sistema, utiliza el siguiente comando:
   
 > ```bash
 > cat /proc/mdstat
 > ```
 
-# CREAR RAID 1 + Hot Spare
+# CREACIÓN DE UN RAID 1 CON DISCO DE RESERVA
 
-- **Creación del RAID 1:**
+- **Establecimiento del RAID 1:**
   
-> Vamos a crear un RAID 1 llamado **md1**, que contendrá dos discos. El RAID 1 es una configuración que proporciona redundancia al duplicar los datos en dos discos. 
-> 
+> Vamos a crear un RAID 1 denominado **md1**, que contendrá dos discos. La configuración RAID 1 ofrece redundancia al duplicar los datos en dos discos, mejorando la seguridad de la información.
+  
 > Ejecutamos el siguiente comando para crear el RAID:
   
 > ```bash
 > sudo mdadm -C /dev/md1 -l1 -n2 /dev/sdb /dev/sdc
 > ```
 
-- **Añadir un Hot Spare:**
+- **Incorporación de un Disco de Reserva:**
   
-> A continuación, añadimos un tercer disco como hot spare. Un hot spare es un disco que se encuentra disponible para ser utilizado en caso de que uno de los discos activos falle. Esto asegura que el RAID continúe funcionando sin interrupciones.
+> A continuación, añadimos un tercer disco como disco de reserva (hot spare). Este disco estará disponible para reemplazar a un disco activo en caso de falla, garantizando que el RAID siga operativo sin interrupciones.
   
 > ```bash
 > sudo mdadm /dev/md1 -a /dev/sdd
 > ```
 
-- **Formateo y Montaje:**
+- **Formateo y Montaje del RAID:**
   
-> Ahora procederemos a formatear el RAID y montarlo en el sistema. Formatear el RAID con **ext4** es esencial para que pueda almacenar datos. Luego, creamos un directorio para montarlo y realizamos el montaje.
+> Ahora procederemos a formatear el RAID y montarlo en el sistema. Formatear el RAID con el sistema de archivos **ext4** es esencial para permitir el almacenamiento de datos. Luego, crearemos un directorio para el montaje.
   
 > ```bash
 > sudo mkfs.ext4 /dev/md1  
@@ -50,9 +50,9 @@
 > sudo mount /dev/md1 /mnt/raid1  
 > ```
 
-- **Provocar un Fallo:**
+- **Simulación de un Fallo en el Disco:**
   
-> Finalmente, para probar la resiliencia del RAID, provocaremos un fallo en uno de los discos. Esto nos permitirá observar cómo el RAID responde a la pérdida de un disco activo y cómo el hot spare toma su lugar.
+> Para poner a prueba la resiliencia del RAID, provocaremos un fallo en uno de los discos. Esto nos permitirá observar cómo el RAID maneja la pérdida de un disco activo y cómo el disco de reserva asume su lugar.
   
 > ```bash
 > sudo mdadm /dev/md1 -f /dev/sdb  
