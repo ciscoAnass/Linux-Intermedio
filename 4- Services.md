@@ -1,40 +1,46 @@
-# Activar/Desactivar servicios
+## Activar/Desactivar Servicios
 
-| Syntax | Description |
-| --- | ----------- |
-| systemctl enable service | activar el servicio por el proximo inicio de sistema |
-| systemctl disable service |Desactivar el servicio por el proximo inicio de sistema|
-| systemctl is-enabled service | Verificar si el servicio esta activo |
+| Comando                      | Descripción                                          |
+| -----------------------------| ---------------------------------------------------- |
+| systemctl enable [servicio]   | Activar el servicio para el próximo inicio del sistema |
+| systemctl disable [servicio]  | Desactivar el servicio para el próximo inicio del sistema |
+| systemctl is-enabled [servicio] | Verificar si el servicio está activo                 |
 
 ***
 
-#  Creacion de Servicion
-- Para Crear un Servicio en Linux , nos vamos a tener que seguir estos pasos :
-- **Primero :** Crear al menos 2 scripts , uno para start service y otro para stop
-- **Segundo :** nos vamos a crear un fichero se llama "algo.service" en esta carpeta "/etc/systemd/system"
-- **Tercero :** Ponemos esta Configuracion en el fichero que hemos creado
->[Unit]
+## Creación de Servicios
 
->Description=Mi servicio de prueba
+- Para crear un servicio en Linux, sigue estos pasos:
 
->[Service]
+1. **Primero:** Crear al menos dos scripts, uno para iniciar el servicio y otro para detenerlo.
+   
+2. **Segundo:** Crear un archivo llamado `algo.service` en la carpeta `/etc/systemd/system`.
 
->Type=simple
+3. **Tercero:** Coloca la siguiente configuración en el archivo que acabas de crear:
 
->ExecStart=/root/conexiones
-
->ExecStop=/root/borraConexiones
-
->RemainAfterExit=yes
-
->[Install]
-
->WantedBy=multi-user.target
-
-- **Cuarto :** hacemos este comando a los scripts :
-> chmod +x *sh
-
-- **Ultimo :** reninciamos la sistema de servicios
-> systemctl daemon-reload
+```bash
+[Unit]
+Description=Mi servicio de prueba
 
 
+[Service]
+Type=simple
+ExecStart=/root/conexiones
+ExecStop=/root/borraConexiones
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+```
+
+ 4- Da permisos de ejecución a los scripts con el siguiente comando:
+  
+```bash
+chmod +x *.sh
+```
+
+5- Reinicia el sistema de servicios con este comando:
+
+```bash
+systemctl daemon-reload
+```
