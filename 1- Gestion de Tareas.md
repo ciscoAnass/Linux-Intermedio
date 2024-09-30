@@ -1,63 +1,59 @@
 # AT
 
- - **NECESSARY :**
+- **NECESARIO:**
 
-> sudo apt install at
-> mesg yes
-> ctrl+d
-- **Ficheros de Importancia :**
-- **/etc/at.deny**
+> sudo apt install at  
+> mesg yes  
+> ctrl+d  
 
+- **Archivos Importantes:**
+  - **/etc/at.deny**
 
-| Command  | Description |
-| ------------- | ------------- |
-| at 17:57   | hacer tarea a esta hora   |
-|  atq  |  ver las tareas  |
-|  at -c  | ver informaciones de tareas   |
-|  atrm [num de tarea]  | borrar tarea   |
+| Comando        | Descripción                      |
+|----------------|----------------------------------|
+| at 17:57       | Programar tarea a esta hora      |
+| atq            | Ver las tareas programadas        |
+| at -c          | Ver información de las tareas     |
+| atrm [número]  | Eliminar tarea                    |
 
-- Para quitar algun usuario desde los servicios at , nos vamos a poner el nombre del usuario por el fichero **/etc/at.deny** , y se hace asi :
-> echo "heidi" > /etc/at.deny
-
-
-
+- Para quitar algún usuario de los servicios at, añadimos el nombre del usuario en el archivo **/etc/at.deny** de la siguiente manera:
+> echo "heidi" > /etc/at.deny  
 
 ***
-# Mail
-> sudo apt install mailutils
 
-| Command  | Description |
-| ------------- | ------------- |
-|  mail  |  escribir y leer los correos  | 
-|mail -f | ver y leer los correos q ya se ha leido |
-|mail -s "Invitacion a boda" < boda.txt | (se utilziza en script) |
+# Correo
+
+> sudo apt install mailutils  
+
+| Comando           | Descripción                       |
+|-------------------|-----------------------------------|
+| mail              | Escribir y leer correos           |
+| mail -f           | Ver y leer correos ya leídos      |
+| mail -s "Invitación a boda" < boda.txt | Enviar un correo desde un script |
 
 # CRONTAB
 
+| Comando         | Descripción                         |
+|------------------|-------------------------------------|
+| ps aux           | Ver todas las tareas                |
+| crontab -e       | Editar el archivo crontab y crear nuevas tareas |
+| crontab -l       | Ver tareas                          |
+| crontab -r       | Borrar tareas                       |
 
-| Command  | Description |
-| ------------- | ------------- |
-|  ps aux  |  Ver todas las tareas  |
-| crontab -e   | editar el fichero crontab y crear nuevas tareas   |
-| crontab -l   | Ver tareas   |
-|  crontab -r  | Borrar Tareas   |
-|    |    |
- - En el contrab tenemos 5 estrellas se explica cada uno y su utilizacion :
- - **Estrella 1** : minutos [0-59]
- - **Estrella 2** : horas [0-23]
- - **Estrella 3** : dias [1-31]
- - **Estrella 4** : meses [1-12]
- - **Estrella 5** : dia de semana [0 domingo -6 sabado ]
+- En crontab tenemos 5 campos, cada uno con su utilización:
+  - **Campo 1**: minutos [0-59]
+  - **Campo 2**: horas [0-23]
+  - **Campo 3**: días [1-31]
+  - **Campo 4**: meses [1-12]
+  - **Campo 5**: día de la semana [0 domingo - 6 sábado]
 
-- Si queremos ejectuar algo cada 10 minutos hacemos **"*/10"**
-
+- Si queremos ejecutar algo cada 10 minutos, usamos **"*/10"**.
 
 ***
+
 # ANACRON
 
-> sudo apt install anacron
+> sudo apt install anacron  
 
-- **Ficheros de Importancia :**
-- **/etc/anacrontab**
-
-
+- **Archivos Importantes:**
+  - **/etc/anacrontab**
