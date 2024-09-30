@@ -1,208 +1,229 @@
-# CONOCIMIENTO
+# Conocimiento sobre Comandos del Sistema
 
+| Sintaxis                     | Descripción                                                        |
+|------------------------------|--------------------------------------------------------------------|
+| `id [-u, -g]`                | Muestra toda la información del usuario actual.                   |
+| `w`, `who`                   | Muestra los usuarios activos en el sistema.                       |
+| `lastlog`                    | Muestra la última vez que cada usuario se conectó.                |
+| `lastb`                      | Muestra los usuarios que fallaron al intentar iniciar sesión.      |
+| `getent passwd heidi`       | Muestra la información del usuario "heidi" desde el archivo `/etc/passwd`. |
 
-| Syntax | Description |
-| --- | ----------- |
-| id [-u ,-g]| See all info |
-| w , who | los usuario activos al momento  |
-| lastlog| la ultima vez cuando los usuarios han conectado |
-| lastb | usuarios q han fallado a loguearse  |
-| getent passwd heidi | Ver informaciones del usuario heidi por el fichero /etc/passwd  |
-
-- Si quitamos el "x" del segundo campo de algun usuario , eso nos deja a entrar a usuarios sin pedir contrasena
-
-***
-
-# /etc/shadow
-
-| Syntax | Description |
-| --- | ----------- |
-| heidi| See all info |
-| dasbioasdhoisdaoiasd | contrasena encriptada |
-| 19758 | cuanto de dias por la ultima vez q se ha cambiado la contrasena desde 1975  |
-| 0 | cuanto dias han pasado para cambiar la contrasena |
-| 99999 | cuanto dias te esperan pa q no puedes hacer log mas con la contrasena actual |
-| 7 | cuanto de dias te avisan antes de la caducacion de la contrasena |
-| normalmente vacia | n de dias q vas a esperar desde q la cuenta se ha caducado hasta que se eimina definitivamente |
-| normalmente vacia | fecha en la q la cuenta expira  |
-
-
-***
-# MATAR USUARIO
-| Syntax | Description |
-| --- | ----------- |
-| pkill -9 -u heidi| desconectar y matar un usuario |
-
-
-***
-# CREAR USUSARIO
-| Syntax | Description |
-| --- | ----------- |
-| adduser| es una forma rápida, fácil e interactiva de crear usuarios |
-| useradd| es otra manera de crear usuarios y no es la mejor manera ( no crea el directorio /home/usuario) |
-
-***
-
-# PASSWORD SET/CHANGE
-| Syntax | Description |
-| --- | ----------- |
-| passwd | poner o cambiar la contrasena de un usuario  |
-
-***
-
-# SET INFO BY DEFECT
-
-| Syntax | Description |
-| --- | ----------- |
-| /etc/login.defs |   |
-
-
-***
-# AUTOAMTIZAZATION OF DATA INTEGRATION IN EVERY USER
-
-| Syntax | Description |
-| --- | ----------- |
-| /etc/skell  |   |
-
-- Es para poner archivos a cualquier usuario de manera automatica
-
-
-
-
-***
-# USERMOD : CAMBIAR NOMBRE / BLOQUEAR USUARIO
-
-| Syntax | Description |
-| --- | ----------- |
-| usermode -L heidi  | se bloquea la uenta de entrar y se anade un "!" por la contrasen criptada en /etc/shadow   |
-| usermode -l javier heidi  | Hemos cambiado el nombre de usuario heidi a javier (nuevo_nombre = javier)  |
-| usermode -aG heidi  | anadir heidi a sudo  |
-
-
-- Para hacer un desbloqueo a la cuenta se hace falta ir a /etc/shadow y quitar "!" desde el lado de la contrasena encriptada del usuarioq  hemos bloqueado
-
-***
-# chage
-
-
-| Syntax | Description |
-| --- | ----------- |
-| chage -d 0 heidi   | Te obliga a cmabiar la contrasena al tiempo   |
-| chage -E 2024-05-30 heidi  | desactiva el usuario por rl 30-05 y asi n se puede acceder con este usuario el dia siguiente 01-06   |
-| chage -E 1 heidi   | Activar un usuario bloqueado   |
+- Si se elimina la "x" del segundo campo de un usuario, esto permite el acceso sin solicitar contraseña.
 
 
 ***
 
-# USERDEL : BORRAR USUARIO
+# Archivo /etc/shadow
 
-
-| Syntax | Description |
-| --- | ----------- |
-| userdel -r heidi | borrar el usuario heidi y despues hacer 'userdel' hacemo 'rm -r /home/heidi'    |
+| Sintaxis                             | Descripción                                                                                     |
+|--------------------------------------|-------------------------------------------------------------------------------------------------|
+| `heidi`                              | Muestra toda la información del usuario.                                                       |
+| `dasbioasdhoisdaoiasd`              | Contraseña encriptada del usuario.                                                              |
+| `19758`                              | Días desde el último cambio de contraseña, contando desde 1975.                               |
+| `0`                                  | Días transcurridos para el próximo cambio de contraseña.                                       |
+| `99999`                              | Días restantes antes de que no se pueda acceder con la contraseña actual.                      |
+| `7`                                  | Días de aviso antes de la caducación de la contraseña.                                         |
+| Normalmente vacío                     | Días que se esperan desde que la cuenta ha caducado hasta su eliminación definitiva.           |
+| Normalmente vacío                     | Fecha en la que la cuenta expira.                                                              |
 
 
 ***
-# GROUPS
-| Syntax | Description |
-| --- | ----------- |
-| addgroup 1asir  | crear grupo se llama 1asir  |
-| groupmod |  |
-| groupdel 1asir | borrar grupo 1asir |
-| adduser heidi sudo | anadir usuario heidi a grupo sudo |
-| deluser heidi sudo | quitar el usuario 1asir del grupo sudo  |
-| newgrp |  |
-| chwon heidi:1asir diskM.sh | cambiar el dueno grupo del fichero diskM.sh desde heidi a 1asir   |
+# Matar Usuario
+
+| Sintaxis                   | Descripción                          |
+|----------------------------|--------------------------------------|
+| `pkill -9 -u heidi`       | Desconecta y finaliza el proceso del usuario "heidi". |
+
+
 
 ***
-# PASSWD -S heidi
-- Para ver si el usuario esta bloqueado o no , si Sale P pues esta libre si esta L pues bloqueado
+# Crear Usuario
+
+| Sintaxis        | Descripción                                                                         |
+|-----------------|-------------------------------------------------------------------------------------|
+| `adduser`       | Método rápido, fácil e interactivo para crear usuarios.                            |
+| `useradd`      | Otra forma de crear usuarios que no es la más recomendada (no crea el directorio `/home/usuario`). |
+
+
 ***
+
+# Establecer/Cambiar Contraseña
+
+| Sintaxis  | Descripción                                         |
+|-----------|-----------------------------------------------------|
+| `passwd`  | Establece o cambia la contraseña de un usuario.    |
+
+
+***
+# Configuración de Información por Defecto
+
+| Sintaxis            | Descripción                                                   |
+|---------------------|---------------------------------------------------------------|
+| `/etc/login.defs`   | Archivo de configuración que define los parámetros predeterminados para la creación de usuarios. |
+
+
+***
+# Automatización de la Integración de Datos en Cada Usuario
+
+| Sintaxis         | Descripción                                                   |
+|------------------|---------------------------------------------------------------|
+| `/etc/skel`      | Directorio utilizado para proporcionar archivos de configuración a nuevos usuarios de manera automática. |
+
+- Permite agregar archivos a cualquier usuario de forma automática.
+
+
+
+
+***
+
+# USRMOD: Cambiar Nombre / Bloquear Usuario
+
+| Sintaxis                     | Descripción                                                                                     |
+|------------------------------|-------------------------------------------------------------------------------------------------|
+| `usermod -L heidi`           | Bloquea la cuenta de usuario y añade un "!" a la contraseña encriptada en `/etc/shadow`.      |
+| `usermod -l javier heidi`    | Cambia el nombre de usuario de "heidi" a "javier" (nuevo_nombre = javier).                   |
+| `usermod -aG heidi`          | Añade el usuario "heidi" al grupo "sudo".                                                     |
+
+- Para desbloquear la cuenta, es necesario ir a `/etc/shadow` y eliminar el "!" de la contraseña encriptada del usuario bloqueado.
+
+***
+
+# Gestión de Contraseñas y Estado de Usuario con chage
+
+| Sintaxis                        | Descripción                                                                                      |
+|---------------------------------|--------------------------------------------------------------------------------------------------|
+| `chage -d 0 heidi`             | Obliga al usuario a cambiar la contraseña en el próximo inicio de sesión.                      |
+| `chage -E 2024-05-30 heidi`     | Desactiva el usuario el 30 de mayo de 2024, impidiendo el acceso a partir del 1 de junio.      |
+| `chage -E 1 heidi`             | Activa un usuario que ha sido bloqueado.                                                       |
+
+
+
+***
+# USERDEL: Borrar Usuario
+
+| Sintaxis                | Descripción                                                                                          |
+|-------------------------|------------------------------------------------------------------------------------------------------|
+| `userdel -r heidi`     | Elimina el usuario "heidi" y su directorio home. Tras ejecutar `userdel`, se debe ejecutar `rm -r /home/heidi` para eliminar el directorio. |
+
+
+
+***
+# Gestión de Grupos
+
+| Sintaxis                   | Descripción                                                                                              |
+|----------------------------|----------------------------------------------------------------------------------------------------------|
+| `addgroup 1asir`          | Crea un nuevo grupo llamado "1asir".                                                                    |
+| `groupmod`                 | Permite modificar las propiedades de un grupo existente.                                                |
+| `groupdel 1asir`          | Elimina el grupo "1asir".                                                                                |
+| `adduser heidi sudo`      | Añade el usuario "heidi" al grupo "sudo".                                                               |
+| `deluser heidi sudo`      | Quita el usuario "heidi" del grupo "sudo".                                                              |
+| `newgrp`                   | Cambia el grupo efectivo del usuario actual a uno nuevo.                                                |
+| `chown heidi:1asir diskM.sh` | Cambia el propietario y el grupo del archivo `diskM.sh` a "heidi" y "1asir", respectivamente.            |
+
+
+***
+
+# Comprobar Estado de Contraseña con passwd -S
+
+- `passwd -S heidi`: Permite verificar si el usuario "heidi" está bloqueado o no. 
+  - Si el resultado es **P**, el usuario está activo. 
+  - Si el resultado es **L**, el usuario está bloqueado.
+
+***
+
 # SUDOERS
- 
-- Fichero de configuracion : **/etc/sudoers**
-- - Para editar el fichero /etc/sudoers se edita con **visudo -f**
-- - Y para COmprobar si todo esta bien se hace con **visudo -c**
 
-| Syntax | Description |
-| --- | ----------- |
-| getent group sudo | para ver cual son los usuarios q tienen privelegio root | 
+- **Archivo de configuración**: **/etc/sudoers**
+- Para editar el archivo `/etc/sudoers`, utiliza **`visudo -f`**.
+- Para comprobar si todo está correcto, utiliza **`visudo -c`**.
 
-
-- para dar el privelegio de root a un usuario se hace asi :
-  
-> visudo -f /etc/sudoers
-
-> heidi ALL=(ALL:ALL) ALL
+| Sintaxis                   | Descripción                                                   |
+|----------------------------|---------------------------------------------------------------|
+| `getent group sudo`       | Muestra los usuarios que tienen privilegios de root.        |
 
 
-- Para dar el privelegio de algunos comando especificos a algun suuario se hace asi :
+### Otorgar Privilegios de Root a un Usuario
 
-> visudo -f /etc/sudoers
+Para dar privilegios de root a un usuario, se realiza de la siguiente manera:
 
-> Cmnd_Alias CTL=/bin/systemctl , /bin/ip
+```bash
+visudo -f /etc/sudoers
+heidi ALL=(ALL:ALL) ALL
+```
 
-> %heidi ALL=CTL (HEIDI EL NOMBRE DE GRUPO)
+### Asignar Privilegios de Comandos Específicos a un Usuario
 
-- Para poder a mofiicar el fichero /etc/netwrok/interfaces o /etc/netplan/00-... (Ubuntu) se ahce como antes pero con una modificacion
+Para otorgar privilegios de algunos comandos específicos a un usuario, se realiza de la siguiente manera:
 
-> Cmnd_Alias CTL= /bin/systemctl , /bin/nano /etc/netplan/00-yaml
+```bash
+visudo -f /etc/sudoers
+Cmnd_Alias CTL=/bin/systemctl, /bin/ip
+%heidi ALL=CTL  # (HEIDI es el nombre del grupo)
+```
 
-> %heidi ALL=CTL 
+### Modificación de Archivos de Configuración de Red en Ubuntu
 
-- Para q no se pide la contrasena se hace falta copiar el anterior y anadir una cosa :
+Para poder modificar el archivo `/etc/network/interfaces` o `/etc/netplan/00-...` en Ubuntu, se hace de la siguiente manera, con una modificación:
 
-> %heidi ALL=NOPASSWD:CTL 
+```bash
+Cmnd_Alias CTL=/bin/systemctl, /bin/nano /etc/netplan/00-yaml
+%heidi ALL=CTL
+```
 
-- Para limitizar el accesso con contrasena osea q para pedir al contrasena 2 vezes y si no se inserta corecta se echa el usuario a repitir de ahcerla otra vez se hace con la siguiente linea :
+### Deshabilitar Solicitud de Contraseña para un Usuario
 
-> Defaults:ALL passwd_tries=2
+Para que no se pida la contraseña, es necesario copiar la línea anterior y añadir lo siguiente:
+
+```bash
+%heidi ALL=NOPASSWD:CTL
+```
+### Limitar Intentos de Contraseña
+
+Para limitar el acceso mediante contraseña, es decir, solicitar la contraseña dos veces y, si no se inserta correctamente, permitir que el usuario repita el intento, se utiliza la siguiente línea:
+
+```bash
+Defaults:ALL passwd_tries=2
+```
 
 ***
-# USERADD
+# CREACIÓN DE USUARIOS
 
-| Syntax | Description |
+| Sintaxis | Descripción |
 | --- | ----------- |
-| useradd -m -s /bin/bash raton | crear un usuario se llama raton ( se  hace falta ejecutar comando 'passwd raton' para darlo un contrasena pa poder a loguear) |
-
-***
-# mkpasswd
-
-- Se hace falta instalar este paquete
-> sudo apt install whois
-
-
-| Syntax | Description |
-| --- | ----------- |
-| useradd -m -s /bin/bash -p $(mkpassd -m sha-512 gato) gato |  | Crear una cuenta con una contrasena encriptada
-
-
-# Crear Usuario de Forma MASSIVA
-
-<img src="/img/Crear-UsuarioDeFormaMassiva.png" alt="css3" />
-
-# Borrar Usuarios de forma MASSIVA
-
-<img src="/img/BorrarUsuariosDeFormaMassiva.png" alt="css3"/>
+| useradd -m -s /bin/bash empleado | Crea un usuario llamado "empleado" (es necesario ejecutar el comando `passwd empleado` para asignarle una contraseña y poder iniciar sesión) |
 
 ***
 
-# FOLDERS IMPORTANTES
+# CREACIÓN DE CUENTAS CON CONTRASEÑA ENCRIPTADA
 
-| Syntax | Description |
-| --- | ----------- |
-| cat /etc/group | grep sudo | para ver quien esta por el grupo sudo y podemos a haceerla  cualquier grupo   |
+- Es necesario instalar el siguiente paquete:
+```bash
+sudo apt install whois
+```
+| Sintaxis                                                   | Descripción                                        |
+| --------------------------------------------------------- | -------------------------------------------------- |
+| useradd -m -s /bin/bash -p $(mkpasswd -m sha-512 gato) gato | Crea una cuenta llamada "gato" con una contraseña encriptada. |
 
 
 
+# CREACIÓN MASIVA DE USUARIOS
 
+![Crear Usuario de Forma Masiva](/img/Crear-UsuarioDeFormaMassiva.png)
+
+# ELIMINACIÓN MASIVA DE USUARIOS
+
+![Borrar Usuarios de Forma Masiva](/img/BorrarUsuariosDeFormaMassiva.png)
 
 
 ***
 
-- saber la configuracion de EXPIRE, INACTIVE en fichero /etc/default/useradd
-- cat /etc/login.defs |grep -v "^#\|^$"
-- que es /etc/skel
-- chage
-- nwegrp
-- groupmod grupo
+# ARCHIVOS DE CONFIGURACIÓN DEL SISTEMA
+
+| Sintaxis                       | Descripción                                                             |
+| ------------------------------ | ----------------------------------------------------------------------- |
+| cat /etc/group | grep sudo    | Muestra quién pertenece al grupo sudo y permite modificar grupos.       |
+| cat /etc/passwd                | Muestra información sobre las cuentas de usuario en el sistema.        |
+| cat /etc/shadow               | Muestra información sobre las contraseñas de usuario y su estado.      |
+
+
+
