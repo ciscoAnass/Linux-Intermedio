@@ -1,63 +1,55 @@
-# BASIC
+# Comandos Básicos del Sistema
 
-| Syntax | Description |
+| Comando | Descripción |
 | --- | ----------- |
-| uname -r | Ver la version del kernel | 
-| /lib/modules/$(uname -r)/modules.dep | Los Modulos disponibles | 
-|/lib/modules/version/modules.builtin | Los modulos Incluidos en el nucleo | 
-| wc -l |To see how many modules we have we just need to put wc -l after cat modules.dep or bullitin | 
-|lsmod | Para ver los modulos que estan cargados actualmente por la sistema  | 
-***
-# Obtener Informaciones sobre los modulos
-| Syntax | Description |
-| --- | ----------- |
-| modinfo [nombre_modulo] | nos da infos sobre el modulo  | 
-| modinfo -d [nombre_modulo] | nos da descripcion sobre el modulo  | 
+| `uname -r` | Ver la versión del kernel actual. | 
+| `/lib/modules/$(uname -r)/modules.dep` | Ver los módulos disponibles en el sistema. | 
+| `/lib/modules/$(uname -r)/modules.builtin` | Ver los módulos incluidos en el núcleo del sistema. | 
+| `cat /lib/modules/$(uname -r)/modules.dep | wc -l` | Ver la cantidad de módulos disponibles (se utiliza `wc -l` para contar las líneas de salida). | 
+| `lsmod` | Ver los módulos que están cargados actualmente en el sistema. |
 
 ***
-# ELiminar modulos De la memoria
 
-| Syntax | Description |
+# Obtener Información sobre los Módulos
+
+| Comando | Descripción |
 | --- | ----------- |
-| modprobe [Nombre_Modulo]| Carga un modulo en memoria  | 
-| modprobe -r [Nombre_Modulo] | ELimina el modulo de la memoria  | 
-| modprobe -v [Nombre_Modulo] | Devolver el modulo a la memoria | 
+| `modinfo [nombre_modulo]` | Proporciona información detallada sobre el módulo especificado. | 
+| `modinfo -d [nombre_modulo]` | Proporciona una descripción del módulo especificado. |
 
 ***
-# Blacklist  a Module
+# Eliminar Módulos de la Memoria
 
-- Para ponr un modulo en la lista negra se hace falta hacer eso
->  echo "blacklist [numero de modulo]"  >> /etc/modprobe.d/blacklist.conf
+| Comando | Descripción |
+| --- | ----------- |
+| `modprobe [Nombre_Modulo]` | Carga un módulo en memoria. | 
+| `modprobe -r [Nombre_Modulo]` | Elimina el módulo de la memoria. | 
+| `modprobe -v [Nombre_Modulo]` | Devuelve información detallada sobre el módulo cargado. |
+
+***
+# Añadir un Módulo a la Lista Negra
+
+- Para poner un módulo en la lista negra, se debe ejecutar el siguiente comando:
+> `echo "blacklist [nombre_modulo]" >> /etc/modprobe.d/blacklist.conf`
+
 ***
 
-# Errores De modulos
+# Diagnosticar Errores de Módulos
 
-| Syntax | Description |
+| Comando | Descripción |
 | --- | ----------- |
-| sudo dmesg  | nos ensena si hay algun error por algun nucleo  | 
-|  |  | 
-|  |  | 
-|  |  | 
+| `sudo dmesg` | Muestra si hay algún error relacionado con el núcleo del sistema. |
 
+***
+# Información sobre Hardware
 
-# HARDWARE
-
-| Syntax | Description |
+| Comando | Descripción |
 | --- | ----------- |
-| lsusb | Informaciones sobre el pendrive que hemos instalado | 
-| lspci | Muestra los dispotivos conectados a los buses PCI | 
+| `lsusb` | Muestra información sobre dispositivos USB conectados, como pendrives. | 
+| `lspci` | Muestra los dispositivos conectados a los buses PCI del sistema. |
 
 
 
 
 
 
-
-
-
-| Syntax | Description |
-| --- | ----------- |
-|  |  | 
-|  |  | 
-|  |  | 
-|  |  | 
