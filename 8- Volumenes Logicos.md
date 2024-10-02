@@ -1,65 +1,114 @@
-# IMportante 
-- Instalamos el paquete lvm2 :
->apt install lvm2
-- Nos vamos a utilizar la herramienta de virtualizacion VirtualBox , pues primero insertamos Discos Virtuales ( para prueba )
+# Volumenes Logicos
 
-# Crear Volumen Fisico
+### Instalación de Herramientas Importantes
 
-- Para Crear Volumen Fisico :
-> pvcreate /dev/sdb
-- Para mosntrar infromaciones de los volumenes Fisicos :
-> pvs
+- Instalamos el paquete `lvm2`:
+```bash
+apt install lvm2
+```
+
+***
+
+### Crear Volumen Físico
+
+- Para crear un volumen físico, utiliza el siguiente comando:
+  
+```bash
+pvcreate /dev/sdb
+```
+- Para mostrar información sobre los volúmenes físicos, utiliza:
+
+```bash
+pvs
+```
+
+***
+
+### Crear Grupo de Volúmenes
+
+- Creamos un grupo que llevará dos discos (`sdb` y `sdc`) y lo llamamos `vg1`:
+
+```bash
+vgcreate vg1 /dev/sdb /dev/sdc
+```
+
+- Para consultar información sobre los grupos de volúmenes, utiliza:
+  
+```bash
+vgs
+```
+***
+### Crear Volumen Lógico
+
+- Creamos un volumen lógico llamado **lv1** de 150 MB a partir del grupo `vg1`:
+  
+```bash
+lvcreate -L 150 -n lv1 vg1
+```
+
+- Para consultar información sobre los volúmenes lógicos, utiliza:
+
+```bash
+lvs
+```
+
+***
+
+### Formatear y Montar los Volúmenes
+
+- Para formatear el volumen lógico:
+
+```bash
+mkfs.ext4 /dev/vg1/lv1
+```
+
+- Para montar el volumen lógico:
+
+```bash
+mkdir /mnt/lv1 && mount /dev/vg1/lv1 /mnt/lv1
+```
 
 
-# Crear Grupo de Volumenes
+- Para comprobar el estado de los sistemas de archivos montados:
 
-- Creamos Un grupo que v a llevar 2 disco ( sdb , sdc ) y nos vamos a llamar este grupo vg1
-> vgcreate vg1 /dev/sdb /dev/sdc 
-- Para Consultar informaciones sobre los Grupos :
-> vgs
+```bash
+df -hT
+```
+***
+### Extender el Volumen Lógico
 
+- Si necesitamos más espacio en el volumen lógico **lv1**, debemos añadir un tercer disco al volumen:
+- 
+```bash
+pvcreate /dev/sdd && vgextend vg1 /dev/sdd
+```
 
-# Crear Volumen Logico
-- Creamos un volumen Logico se llama **lv1** de 150 Mb a partir del grupo vg1 :
-> lvcreate -L 150 -n lv1 vg1
-- Para Consultar informaciones sobre los Volumenes Logicos :
-> lvs
-
-
-# Formateamos y MOntamos los VOlumenes
-
-- Formatear :
-> mkfs.ext4 /dev/vg1/lv1
-
-- Montar :
-> mkdir /mnt/lv1
-> mount /dev/vg1/lv1 /mnt/lv1
-
-- Comprobacion :
-> df -hT
+- Para añadir más espacio del disco al volumen, utilizamos el siguiente comando:
+```bash
+lvextend -L +50 /dev/vg1/lv1
+ ```
+ Básicamente, hemos añadido 50 MB al volumen.
 
 
-# Extender El volumen Logico
+***
 
-- En caso que necesitamos mas espacio al volumen Logico lv1 , nos tenemos que anadir un tercer disco al volumen :
->pvcreate /dev/sdd
->vgextend vg1 /dev/sdd
+### Crear un Snapshot
 
-- Solo hemos anadido un disco al volumen pero si queremos anadir mas espacio del disco al volumen se hace falta : 
->  lvextend -L +50 /dev/vg1/lv1
-Basicamente hemos anadido 50 MB al volumen
+- Vamos a crear una copia de seguridad de nuestros volúmenes.
+- Primero, creamos un snapshot de 50 MB llamado **lv1-fecha**, que es una copia de seguridad del volumen `/dev/vg1/lv1`:
+```bash
+lvcreate -L 50 -s -n lv1-$(date +%d-%m-%Y) /dev/vg1/lv1
+```
 
+- Ahora, creamos una carpeta en `/mnt`:
+```bash
+mkdir /mnt/snapshot
+```
 
-# Snapshot
+- Finalmente, montamos el snapshot en la carpeta:
+```bash
+mount /dev/vg1/lv1-fecha /mnt/snapshot
+```
 
-- Nos vamos a tneer una copia de seguridad de nuestro volumenes
-- Primero Creamos un snapshor de 50Mb se llama lv1-fecha y es una copia de seguridad del volumen /dev/vg1/lv1
->  lvcreate -L 50 -s -n lv1-$(date +%d-%m-%Y) /dev/vg1/lv1
-
-- ahora creamos una carpeta en /mnt
-> mkdir /mnt/snapchot
-
-- ahora montamos en snapshot en la carpeta 
-> mount /dev/vg1/lv1-fecha /mnt/snapshot
 
 
