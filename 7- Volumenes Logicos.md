@@ -1,5 +1,6 @@
 # Volumenes Logicos
 
+
 ### Instalación de Herramientas Importantes
 
 - Instalamos el paquete `lvm2`:
