@@ -1,10 +1,13 @@
-# Linux-intermedio
+# Linux Intermedio
 
-![Linux Logo](https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg)
+
+![Linux Logo](https://wallpapers.com/images/high/ark-theme-linux-desktop-interface-0giij1d853f85k4e.webp)
+
 
 ## Introducción
 
 Bienvenido a "Linux-intermedio", un repositorio diseñado para profundizar en los conceptos y habilidades de nivel intermedio del sistema operativo Linux. Este proyecto tiene como objetivo proporcionar una guía completa para usuarios que ya tienen conocimientos básicos de Linux y desean expandir sus habilidades.
+
 
 ## Contenido
 
@@ -18,8 +21,7 @@ Bienvenido a "Linux-intermedio", un repositorio diseñado para profundizar en lo
 8. [RAID](11-%20RAID.md)
 9. [Redes en Linux](9-%20Redes%20en%20Linux.md)
 10. [Seguridad Básica](10-%20Seguridad%20Basica.md)
-11. [Scripting en Bash](12-%20Scripting%20en%20Bash.md)
-12. [Gestión de Paquetes](13-%20Gestion%20de%20Paquetes.md)
+
 
 ## Cómo usar este repositorio
 
