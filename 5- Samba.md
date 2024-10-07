@@ -7,6 +7,7 @@ sudo apt install samba
 ```
 ### Fichero de Configuración
 
+
 ```bash
 /etc/samba/smb.conf
 ```
