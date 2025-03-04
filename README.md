@@ -1,9 +1,6 @@
 # Linux por Administradores
 
 
-
-## Introducción
-
 Bienvenido a "Linux-Admin", un repositorio diseñado para profundizar en los conceptos y habilidades de nivel intermedio del sistema operativo Linux. Este proyecto tiene como objetivo proporcionar una guía completa para usuarios que ya tienen conocimientos básicos de Linux y desean expandir sus habilidades.
 
 
